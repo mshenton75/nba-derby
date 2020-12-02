@@ -2,6 +2,7 @@ require('../../config')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const router = require('express').Router()
+const raiseError = require('http-errors')
 
 router.route('/')
   .post(async (req, res) => {
@@ -18,5 +19,18 @@ router.route('/')
       res.json(user)
     })
   })
+
+router.get('/:id', async (req, res) => {
+  User.findById(req.params.id, (err, user) => {
+    if (err) return console.error(err)
+    if (!user) {
+      // TODO: extract into seperate error handling module
+      console.error('User not found')
+      res.status(404)
+      res.json('User not found')
+    }
+    res.json(user)
+  })
+})
 
 module.exports = router

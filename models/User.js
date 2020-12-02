@@ -12,7 +12,7 @@ const User = new mongoose.Schema({
 User.plugin(uniqueValidator, { message: 'is already taken.' })
 
 // TODO: this doesn't work
-User.methods.fullName = (_user) => {
+User.methods.fullName = function () {
   return `${this.first_name} ${this.last_name}`
 }
 
