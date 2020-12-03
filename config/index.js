@@ -15,6 +15,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+
+require('../models/User.js')
 
 module.exports = app
