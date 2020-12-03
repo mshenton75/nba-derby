@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
+const updateVersioningPlugin = require('mongoose-update-versioning')
 
 // TODO: indexing doesn't seem to work
 const User = new mongoose.Schema({
@@ -10,6 +11,7 @@ const User = new mongoose.Schema({
 })
 
 User.plugin(uniqueValidator, { message: 'is already taken.' })
+User.plugin(updateVersioningPlugin)
 
 // TODO: this doesn't work
 User.methods.fullName = function () {
