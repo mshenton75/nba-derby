@@ -1,18 +1,23 @@
-require('../../config')
+require('../config')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const router = require('express').Router()
+const verifyUser = require('../handlers/user_verification.js')
+const auth0Client = require('../lib/auth0')
 
 // TODO: extract error handling into seperate module
+
 router.route('/')
-  .get(async (req, res) => {
+  .get(verifyUser, async (req, res) => {
+    //console.log(req.user.user_metadata)
+   
     User.find((err, users) => {
       if (err) throw err
 
       return res.json(users)
     })
   })
-  .post(async (req, res) => {
+  .post(verifyUser, async (req, res) => {
     const body = {
       email: req.body.email,
       username: req.body.username,
@@ -23,12 +28,14 @@ router.route('/')
     user.save((err, user) => {
       if (err) return res.status(422).json('Failed to create user.')
 
+      // TODO: register db user_id on req.user.user_metadata object
+      // with  auth0Client.registerUserId(user.id)
       res.json(user)
     })
   })
 
 router.route('/:id')
-  .get(async (req, res) => {
+  .get(verifyUser, async (req, res) => {
     const user = User.findById(req.params.id, (err, result) => {
       if (err) throw err
       if (!user) {
@@ -37,7 +44,7 @@ router.route('/:id')
     })
     res.json(await user)
   })
-  .put(async (req, res) => {
+  .put(verifyUser, async (req, res) => {
     const user = User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
       if (err) throw err
       if (!user) {
