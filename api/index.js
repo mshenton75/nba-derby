@@ -2,7 +2,8 @@ var router = require('express').Router();
 
 router.route('/')
   .get(async function (req, res) {
-    res.send('this is from index')
+    console.log('here')
+    res.render('index', { title: 'Something!!' })
   });
 
 module.exports = router;
