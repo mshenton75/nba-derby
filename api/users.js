@@ -6,11 +6,10 @@ const verifyUser = require('../handlers/user_verification.js')
 const auth0Client = require('../lib/auth0')
 
 // TODO: extract error handling into seperate module
+// TODO: create one gatekeeper verifyUser definition
 
 router.route('/')
   .get(verifyUser, async (req, res) => {
-    //console.log(req.user.user_metadata)
-   
     User.find((err, users) => {
       if (err) throw err
 
@@ -28,8 +27,7 @@ router.route('/')
     user.save((err, user) => {
       if (err) return res.status(422).json('Failed to create user.')
 
-      // TODO: register db user_id on req.user.user_metadata object
-      // with  auth0Client.registerUserId(user.id)
+      auth0Client.registerUserId(req.user.id, user.id)
       res.json(user)
     })
   })
