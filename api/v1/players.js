@@ -1,4 +1,4 @@
-require('../../config')
+require.main.require('./config')
 const router = require('express').Router()
 const moment = require('moment')
 const PlayersList = require.main.require('./lib/players_list')
