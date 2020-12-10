@@ -2,10 +2,9 @@ require('../config')
 const router = require('express').Router()
 const passport = require('passport')
 const querystring = require('querystring')
+const userInteractor = require.main.require('./interactors/user_interactor.js')
 
 require('dotenv').config()
-
-// TODO: implement forwarding route using next()
 
 router.get(
   '/login',
@@ -26,8 +25,23 @@ router.get('/callback', (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) return next(err)
 
-      // TODO: search user and create if they don't exist
-
+      userInteractor.searchUser({ id: req.user.id }, (user, next) => {
+        if (!user) {
+          const body = {
+            email: req.user._json.email,
+            username: req.user.nickname,
+            first_name: req.user.name.givenName,
+            last_name: req.user.name.familyName,
+            auth0_id: req.user.id
+          }
+          userInteractor.createUser(body, (user) => {
+            if (!user) {
+              console.err('User failed to create')
+              res.redirect('/login')
+            }
+          })
+        }
+      })
 
       const returnTo = req.session.returnTo
       delete req.session.returnTo

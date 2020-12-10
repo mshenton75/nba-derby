@@ -6,8 +6,9 @@ const updateVersioningPlugin = require('mongoose-update-versioning')
 const User = new mongoose.Schema({
   username: { type: String, lowercase: true, unique: true, required: [true, 'required'], index: true },
   email: { type: String, lowercase: true, unique: true, required: [true, 'required'], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true }
+  first_name: { type: String },
+  last_name: { type: String },
+  auth0_id: { type: String, required: true }
 })
 
 User.plugin(uniqueValidator, { message: 'is already taken.' })
