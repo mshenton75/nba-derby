@@ -6,7 +6,6 @@ module.exports = {
   createUser: async (params, fn) => {
     const user = new User(params)
     user.save(async (err, user) => {
-      console.log('hereh')
       if (err) {
         return fn({ status: 422, json: 'Failed to create user' })
       }
