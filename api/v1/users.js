@@ -1,16 +1,13 @@
-require('../config')
+require('../../config')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const router = require('express').Router()
-const verifyUser = require('../handlers/user_verification.js')
-const auth0Client = require('../lib/auth0')
-const userInteractor = require('../interactors/userInteractor.js')
 
-// TODO: extract error handling into seperate module
-// TODO: create one gatekeeper verifyUser definition
+const verifyUser = require.main.require('./handlers/user_verification.js')
+const userInteractor = require.main.require('./interactors/user_interactor.js')
 
 router.route('/')
-  .get(verifyUser, async (req, res) => {
+  .get(async (req, res) => {
     User.find((err, users) => {
       if (err) throw err
 

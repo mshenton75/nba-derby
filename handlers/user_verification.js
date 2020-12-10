@@ -1,5 +1,8 @@
-const verifyUser =(req, res, next) => {
-  if (req.user) return next()
+const verifyUser = (req, res, next) => {
+  console.log(req.user)
+  if (req.user) {
+    return next()
+  }
 
   req.session.returnTo = req.originalUrl
   res.redirect('/login')

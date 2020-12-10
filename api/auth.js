@@ -26,6 +26,9 @@ router.get('/callback', (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) return next(err)
 
+      // TODO: search user and create if they don't exist
+
+
       const returnTo = req.session.returnTo
       delete req.session.returnTo
       res.redirect(returnTo || '/')
