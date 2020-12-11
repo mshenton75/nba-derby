@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const encrypt = require('mongoose-encryption')
 const _ = require('lodash')
 
-// TODO: encrypt token
 const Auth0Token = new mongoose.Schema({
   access_token: { type: String, required: true }
 })
