@@ -48,6 +48,7 @@ const strategy = new Auth0Strategy(
 // view engine setup
 app.set('views', path.join(root, 'views'))
 app.set('view engine', 'pug')
+app.set('trust proxy', 1)
 
 app.use(logger('dev'))
 app.use(express.json())
