@@ -78,6 +78,7 @@ app.use((req, res, next) => {
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 
-require('../models/User.js')
+require.main.require('./models/User.js')
+require.main.require('./models/Auth0Token.js')
 
 module.exports = app

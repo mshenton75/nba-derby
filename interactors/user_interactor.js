@@ -10,7 +10,6 @@ module.exports = {
       if (err) {
         return res({ status: 422, data: 'Failed to create user' })
       }
-
       auth0Client.registerUserId(user.auth0_id, user.id)
       res({ status: 201, data: user })
     })
