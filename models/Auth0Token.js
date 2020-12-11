@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const encrypt = require('mongoose-encryption')
+const _ = require('lodash')
 
 // TODO: encrypt token
 const Auth0Token = new mongoose.Schema({
@@ -8,7 +9,7 @@ const Auth0Token = new mongoose.Schema({
 
 Auth0Token.statics.lastToken = async function () {
   const tokenObject = await this.findOne().sort({ created_at: -1 }).exec()
-  return tokenObject.access_token
+  return _.get(tokenObject, 'access_token')
 }
 
 Auth0Token.plugin(encrypt, {
