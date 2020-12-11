@@ -6,6 +6,15 @@ const userInteractor = require.main.require('./interactors/user_interactor.js')
 
 require('dotenv').config()
 
+// if app still in development, display placeholder
+router.use((req, res, next) => {
+  if (process.env.DISPLAY_PLACEHOLDER === 'true') {
+    res.redirect('/')
+  } else {
+    next()
+  }
+})
+
 router.get(
   '/login',
   passport.authenticate('auth0',
