@@ -2,16 +2,13 @@ extends layout
 
 block layout-content
   div.View
-    h1.Banner Matt's App
+    h1.Banner NBA Derby
     div.Message
-      div.Title
-        h3 Some title 
-        h1 howdy howdy
       span.Details Developed by Matt Shenton
     div.NavButtons
       if isAuthenticated
         a(href="/logout")
-          div.NavButton logout
+          button(type='button') Logout
       else
         a(href="/login")
-            div.NavButton Log in
+          button(type='button') Log in
