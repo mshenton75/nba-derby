@@ -21,3 +21,5 @@ app.use(function (err, req, res, next) {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Express server currently running on port ${PORT}`))
+
+module.exports = app
