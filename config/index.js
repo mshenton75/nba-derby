@@ -10,7 +10,6 @@ const root = path.dirname(require.main.filename)
 const expressSession = require('express-session')
 const passport = require('passport')
 const Auth0Strategy = require('passport-auth0')
-//const authRouter = require('./auth')
 
 const session = {
   secret: process.env.SESSION_SECRET,
@@ -27,8 +26,8 @@ if (app.get('env') === 'production') {
 const strategy = new Auth0Strategy(
   {
     domain: process.env.AUTH0_DOMAIN,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    clientID: process.env.AUTH0_NBADERBY_CLIENT_ID,
+    clientSecret: process.env.AUTH0_NBADERBY_CLIENT_SECRET,
     callbackURL: process.env.AUTH0_CALLBACK_URL
   },
   function (accessToken, refreshToken, extraParams, profile, done) {

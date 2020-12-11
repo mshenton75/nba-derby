@@ -20,6 +20,7 @@
     "moment": "^2.29.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.1",
+    "mongoose-encryption": "^2.0.3",
     "mongoose-unique-validator": "^2.0.3",
     "mongoose-update-versioning": "^0.1.1",
     "morgan": "^1.10.0",
