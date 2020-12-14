@@ -1,8 +1,15 @@
 body {
-  background: grey;
+  background-image: url('./assets/placeholder-background.png')
 }
-div.navButtons {
-  margin: auto;
-  width: 50%;
+
+.View {
+  font-weight: bolder;
+  color: azure;
   text-align: center;
+  font-family: 'Barlow', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
