@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const PlayersList = require.main.require('./lib/players_list')
 
 const ActivePlayer = new mongoose.Schema({
-  date: { type: String, index: true },
+  date: { type: String, index: true, unique: true },
   players: { type: Array }
 })
 
