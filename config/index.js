@@ -80,5 +80,9 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateInde
 
 require.main.require('./models/User.js')
 require.main.require('./models/Auth0Token.js')
+require.main.require('./models/ActivePlayer.js')
+
+// must require tasks after models
+require.main.require('./tasks')
 
 module.exports = app
