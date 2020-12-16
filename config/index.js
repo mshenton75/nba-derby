@@ -10,6 +10,7 @@ const root = path.dirname(require.main.filename)
 const expressSession = require('express-session')
 const passport = require('passport')
 const Auth0Strategy = require('passport-auth0')
+const favicon = require('serve-favicon')
 
 const session = {
   secret: process.env.SESSION_SECRET,
@@ -44,7 +45,6 @@ const strategy = new Auth0Strategy(
   }
 )
 
-
 // view engine setup
 app.set('views', path.join(root, 'views'))
 app.set('view engine', 'pug')
@@ -54,6 +54,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(root, 'public')))
+app.use(favicon((path.join(root, 'public/assets/basketball-ball.png'))))
 app.use(helmet())
 app.use(cors())
 

@@ -31,6 +31,7 @@
     "passport-auth0": "^1.4.0",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
+    "serve-favicon": "^2.5.0",
     "standard": "^16.0.3"
   },
   "main": "app.js",
