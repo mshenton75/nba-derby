@@ -1,7 +1,6 @@
 require.main.require('./config')
 const router = require('express').Router()
 const moment = require('moment')
-const PlayersList = require.main.require('./lib/players_list')
 const _ = require('lodash')
 const mongoose = require('mongoose')
 const ActivePlayer = mongoose.model('ActivePlayer')
