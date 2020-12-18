@@ -1,0 +1,9 @@
+.ActivePlayerTable {
+  padding-left: 25%;
+  padding-right: 25%;
+  color: black;
+}
+
+.PlayerInfo {
+  font-style: italic;
+}

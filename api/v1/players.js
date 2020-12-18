@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
   if (playersDocument.length === 0) {
     return res.send('No players found for that date')
   }
-  res.send(playersDocument[0].players)
+
+  res.render('active_players', { playersByGame: playersDocument[0].players })
 })
 
 module.exports = router
