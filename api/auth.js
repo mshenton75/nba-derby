@@ -54,7 +54,8 @@ router.get('/callback', (req, res, next) => {
 
       const returnTo = req.session.returnTo
       delete req.session.returnTo
-      res.redirect(returnTo || '/')
+      const homeUrl = process.env.APP_NAME === 'nba-derby' ? 'https://www.nbaderby.com/' : '/'
+      res.redirect(returnTo || homeUrl)
     })
   })(req, res, next)
 })
