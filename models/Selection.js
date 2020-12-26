@@ -25,4 +25,8 @@ Selection.statics.saveSelection = async function (date, playerObj, userId) {
   })
 }
 
+Selection.statics.byUserId = async function (userId) {
+  return await this.find({ user_id: userId })
+}
+
 mongoose.model('Selection', Selection)

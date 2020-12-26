@@ -2,6 +2,8 @@ require('../config')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const auth0Client = require.main.require('./lib/auth0')
+const _ = require('lodash')
+const Selection = mongoose.model('Selection')
 
 module.exports = {
   createUser: async (params, res) => {
@@ -20,5 +22,13 @@ module.exports = {
 
       res(user)
     })
+  },
+  userSelections: async (userId) => {
+    const selections = new Set()
+    _.forEach(await Selection.byUserId(userId), (s) => {
+      selections.add(s.player_id)
+    })
+
+    return selections
   }
 }
