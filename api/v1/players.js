@@ -5,14 +5,15 @@ const _ = require('lodash')
 const mongoose = require('mongoose')
 const ActivePlayer = mongoose.model('ActivePlayer')
 
+router.use('/selection', require('./selection'))
+
 router.get('/', async (req, res) => {
   const date = moment(_.get(req.query, 'date'))
   const playersDocument = await ActivePlayer.find({ date: date.format('YYYY-MM-DD') })
   if (playersDocument.length === 0) {
     return res.send('No players found for that date')
   }
-
-  res.render('active_players', { playersByGame: playersDocument[0].players })
+  res.render('active_players', { playersByGame: playersDocument[0].players, date: playersDocument[0].date })
 })
 
 module.exports = router

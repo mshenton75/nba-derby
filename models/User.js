@@ -8,7 +8,7 @@ const User = new mongoose.Schema({
   email: { type: String, lowercase: true, unique: true, required: [true, 'required'], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
   first_name: { type: String },
   last_name: { type: String },
-  auth0_id: { type: String, required: true }
+  auth0_id: { type: String, required: true, index: true }
 })
 
 User.plugin(uniqueValidator, { message: 'is already taken.' })

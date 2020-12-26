@@ -9,8 +9,13 @@ block layout-content
         each game in playersByGame
           each player in game.rosters
             tr
-              td 
-                div.PlayerName 
-                  p #{player.first_name} #{player.last_name}
+              td
+                form(class="player-select", method="POST" action="/players/selection")
+                  div.PlayerName 
+                    p #{player.first_name} #{player.last_name}
+                  div.SelectPlayerButton
+                    button(class="btn btn-small" type="submit") Select Player
                   div.PlayerInfo
                     p #{player.position}, #{player.team_name}
+                  input(type="hidden" name="player" value=player)
+                  input(type="hidden" name="date" value=date)

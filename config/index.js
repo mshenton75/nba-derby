@@ -52,7 +52,7 @@ app.set('trust proxy', 1)
 
 app.use(logger('dev'))
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(root, 'public')))
 app.use(favicon((path.join(root, 'public/assets/basketball-ball.png'))))
 app.use(helmet())
@@ -82,6 +82,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateInde
 require.main.require('./models/User.js')
 require.main.require('./models/Auth0Token.js')
 require.main.require('./models/ActivePlayer.js')
+require.main.require('./models/Selection.js')
 
 // must require tasks after models
 require.main.require('./tasks')
