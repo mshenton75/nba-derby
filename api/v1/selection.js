@@ -5,7 +5,6 @@ const User = mongoose.model('User')
 const Selection = mongoose.model('Selection')
 
 router.post('/', async (req, res) => {
-  console.log(req.user)
   const user = await User.findOne({ auth0_id: req.user.id })
   if (!user) return console.error('No user found')
 
