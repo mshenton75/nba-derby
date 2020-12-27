@@ -12,9 +12,6 @@ router.get('/', async (req, res) => {
   const userSelections = await userInteractor.userSelections(req.currentUser.id)
   const date = moment(_.get(req.query, 'date'))
   const playersDocument = await ActivePlayer.find({ date: date.format('YYYY-MM-DD') })
-  const playerAvailable = (playerId) => {
-    return !userSelections.has(parseInt(playerId))
-  }
 
   if (playersDocument.length === 0) {
     return res.send('No players found for that date')
@@ -22,7 +19,7 @@ router.get('/', async (req, res) => {
   res.render('active_players', {
     playersByGame: playersDocument[0].players,
     date: playersDocument[0].date,
-    playerAvailable: playerAvailable
+    userSelections: userSelections
   })
 })
 
