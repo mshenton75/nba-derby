@@ -11,12 +11,12 @@ const GameScore = new mongoose.Schema({
       return (this.points + this.assists + this.steals + this.rebounds + this.blocks) - this.turnovers
     }
   },
-  points: { type: Number, required: true },
-  assists: { type: Number, required: true },
-  rebounds: { type: Number, required: true },
-  steals: { type: Number, required: true },
-  blocks: { type: Number, required: true },
-  turnovers: { type: Number, required: true }
+  points: { type: Number, default: 0 },
+  assists: { type: Number, default: 0 },
+  rebounds: { type: Number, default: 0 },
+  steals: { type: Number, default: 0 },
+  blocks: { type: Number, default: 0 },
+  turnovers: { type: Number, default: 0 }
 })
 
 GameScore.statics.saveStatsForGame = async function (gameId, date) {
