@@ -4,17 +4,22 @@
   color: black;
 }
 
+.Player {
+  padding-left: 3%;
+}
+
 .PlayerInfo {
   font-style: italic;
 }
 
+/* TODO: rework html in table cell */
 .SelectPlayerButton {
   float: right;
   width: 50%;
   margin: 0;
   top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-200%);
   padding-right: 5%;
 }
 

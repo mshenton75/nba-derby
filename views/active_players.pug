@@ -8,15 +8,16 @@ block layout-content
           th Players
         each game in playersByGame
           each player in game.rosters
-            if playerAvailable(player.player_id)
-              tr
-                td
+            tr
+              td
+                div.Player
+                  div.PlayerName 
+                    p #{player.first_name} #{player.last_name}
+                  div.PlayerInfo
+                    p #{player.position}, #{player.team_name}
+                if playerAvailable(player.player_id)
                   form(class="player-select", method="POST" action="/players/selection")
-                    div.PlayerName 
-                      p #{player.first_name} #{player.last_name}
                     div.SelectPlayerButton
                       button(class="btn btn-small" type="submit") Select Player
-                    div.PlayerInfo
-                      p #{player.position}, #{player.team_name}
                     input(type="hidden" name="player" value=player)
                     input(type="hidden" name="date" value=date)
